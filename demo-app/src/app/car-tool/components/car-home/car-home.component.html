@@ -1,20 +1,43 @@
+<header>
+  <h1>Car Tool</h1>
+</header>
 
+<table>
+  <tbody>
+    <tr *ngFor="let car of cars">
+      <td>{{car.id}}</td>
+      <td>{{car.make}}</td>
+    </tr>
+  </tbody>
+</table>
 
-<input type="text" [(ngModel)]="make" required>
+<form [formGroup]="carForm">
 
-<button (click)="make='test1'">Click Me</button>
+  <label>
+    Make:
+    <input type="text" formControlName="make">
+  </label>
 
-<br><br>
+  <label>
+    Model:
+    <input type="text" formControlName="model">
+  </label>
 
-Make: {{make}}
+  <label>
+    Year:
+    <input type="number" formControlName="year">
+  </label>
 
-<br><br>
+  <label>
+    Color:
+    <input type="text" formControlName="color">
+  </label>
 
-<input type="text" [formControl]="makeControl">
+  <label>
+    Price:
+    <input type="number" formControlName="price">
+  </label>
 
-<br><br>
+  <button (click)="addCar()">Add Car</button>
 
-Make2: {{makeControl.value}}
-
-<button (click)="makeControl.setValue('test2')">
-  Click Me</button>
+</form>
