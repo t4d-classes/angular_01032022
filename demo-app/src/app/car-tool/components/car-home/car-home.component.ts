@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,9 +10,13 @@ export class CarHomeComponent implements OnInit {
 
   make = "";
 
+  makeControl = new FormControl('',
+    { validators: [ Validators.required]});
+
   constructor() { }
 
   ngOnInit(): void {
+    this.makeControl.valid
   }
 
 }

@@ -1,7 +1,20 @@
 
 
-<input type="text" [(ngModel)]="make">
+<input type="text" [(ngModel)]="make" required>
+
+<button (click)="make='test1'">Click Me</button>
 
 <br><br>
 
 Make: {{make}}
+
+<br><br>
+
+<input type="text" [formControl]="makeControl">
+
+<br><br>
+
+Make2: {{makeControl.value}}
+
+<button (click)="makeControl.setValue('test2')">
+  Click Me</button>
