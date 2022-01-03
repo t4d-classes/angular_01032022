@@ -1,43 +1,5 @@
-<header>
-  <h1>Car Tool</h1>
-</header>
+<app-tool-header headerText="Car Tool"></app-tool-header>
 
-<table>
-  <tbody>
-    <tr *ngFor="let car of cars">
-      <td>{{car.id}}</td>
-      <td>{{car.make}}</td>
-    </tr>
-  </tbody>
-</table>
+<app-car-table [cars]="cars"></app-car-table>
 
-<form [formGroup]="carForm">
-
-  <label>
-    Make:
-    <input type="text" formControlName="make">
-  </label>
-
-  <label>
-    Model:
-    <input type="text" formControlName="model">
-  </label>
-
-  <label>
-    Year:
-    <input type="number" formControlName="year">
-  </label>
-
-  <label>
-    Color:
-    <input type="text" formControlName="color">
-  </label>
-
-  <label>
-    Price:
-    <input type="number" formControlName="price">
-  </label>
-
-  <button (click)="addCar()">Add Car</button>
-
-</form>
+<app-car-form (submitCar)="addCar($event)"></app-car-form>
