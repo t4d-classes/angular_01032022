@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import { Color } from '../../models/colors';
 
-import { ColorsService } from '../../services/colors.service';
+import { IColorsService } from '../../models/IColorsService';
+import { COLORS_SERVICE_TOKEN } from '../../tokens/colorsService';
 
 @Component({
   // css selector
@@ -14,7 +15,9 @@ export class ColorHomeComponent implements OnInit {
 
   colors: Color[] = [];  
 
-  constructor(private colorsSvc: ColorsService) { }
+  constructor(
+    @Inject(COLORS_SERVICE_TOKEN)
+    private colorsSvc: IColorsService) { }
 
   ngOnInit(): void {
     this.colors = this.colorsSvc.all();

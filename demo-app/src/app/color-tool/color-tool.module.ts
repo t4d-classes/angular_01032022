@@ -8,7 +8,8 @@ import { ColorHomeComponent } from './components/color-home/color-home.component
 import { ColorListComponent } from './components/color-list/color-list.component';
 import { ColorFormComponent } from './components/color-form/color-form.component';
 
-// import { ColorsService } from './services/colors.service';
+import { simpleColors } from './services/simple-colors.service';
+import { ColorsService, ColorsService2 } from './services/colors.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,14 @@ import { ColorFormComponent } from './components/color-form/color-form.component
     ReactiveFormsModule,
     SharedModule,
   ],
-  // providers: [ ColorsService ],
+  providers: [ 
+    // ColorsService,
+    // expanded version where the
+    // token and implementation are separate
+    // { provide: ColorsService, useClass: ColorsService2 },
+    // ColorsService2,
+    { provide: ColorsService, useValue: simpleColors },
+  ],
   exports: [
     ColorHomeComponent,
   ],
