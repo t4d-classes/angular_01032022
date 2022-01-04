@@ -8,6 +8,7 @@ import { ColorHomeComponent } from './components/color-home/color-home.component
 import { ColorListComponent } from './components/color-list/color-list.component';
 import { ColorFormComponent } from './components/color-form/color-form.component';
 
+// import { ColorsService } from './services/colors.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ColorFormComponent } from './components/color-form/color-form.component
     ReactiveFormsModule,
     SharedModule,
   ],
+  // providers: [ ColorsService ],
   exports: [
     ColorHomeComponent,
   ],
