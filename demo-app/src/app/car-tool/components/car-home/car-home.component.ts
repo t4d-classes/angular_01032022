@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs';
 
 import { Car, NewCar } from '../../models/cars';
+import { CarsService } from '../../services/cars.service';
 
 @Component({
   selector: 'app-car-home',
@@ -9,31 +11,19 @@ import { Car, NewCar } from '../../models/cars';
 })
 export class CarHomeComponent implements OnInit {
 
-  cars: Car[] = [
-    {
-      id: 1,
-      make: 'Ford',
-      model: 'Fusion Hybrid',
-      year: 2019,
-      color:'blue',
-      price: 45000,
-    },
-    {
-      id: 2,
-      make: 'Tesla',
-      model: 'S',
-      year: 2020,
-      color:'red',
-      price: 120000,
-    },
-  ];
+  cars: Car[] = [];
 
   editCarId = -1;
 
-  constructor() {
+  constructor(private carsSvc: CarsService) {
   }
 
   ngOnInit(): void {
+    this.carsSvc.all().subscribe({
+      next: cars => {
+        this.cars = cars;
+      }
+    });
   }
 
   doEditCar(carId: number) {
@@ -45,14 +35,28 @@ export class CarHomeComponent implements OnInit {
   }
 
   doAppendCar(car: NewCar) {
-    this.cars = [
-      ...this.cars,
-      {
-        ...car,
-        id: Math.max(...this.cars.map(c => c.id), 0) + 1,
-      },
-    ];
-    this.editCarId = -1;
+    // this.carsSvc.append(car).subscribe({
+    //   next: () => {
+    //     this.carsSvc.all().subscribe({
+    //       next: cars => {
+    //         this.cars = cars;
+    //         this.editCarId = -1;
+    //       }
+    //     });
+    //   }
+    // });
+
+    this.carsSvc
+      .append(car)
+      .pipe(
+        switchMap(() => this.carsSvc.all())
+      )
+      .subscribe({
+        next: cars => {
+          this.cars = cars;
+          this.editCarId = -1;
+        }
+      });
   }
 
   doReplaceCar(car: Car) {
