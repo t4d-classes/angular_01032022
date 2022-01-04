@@ -18,7 +18,17 @@ export class CarHomeComponent implements OnInit {
       color:'blue',
       price: 45000,
     },
+    {
+      id: 2,
+      make: 'Tesla',
+      model: 'S',
+      year: 2020,
+      color:'red',
+      price: 120000,
+    },
   ];
+
+  editCarId = -1;
 
   constructor() {
   }
@@ -26,8 +36,15 @@ export class CarHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addCar(car: NewCar) {
+  doEditCar(carId: number) {
+    this.editCarId = carId;
+  }
 
+  doCancelCar() {
+    this.editCarId = -1;
+  }
+
+  doAppendCar(car: NewCar) {
     this.cars = [
       ...this.cars,
       {
@@ -35,7 +52,20 @@ export class CarHomeComponent implements OnInit {
         id: Math.max(...this.cars.map(c => c.id), 0) + 1,
       },
     ];
+    this.editCarId = -1;
+  }
 
+  doReplaceCar(car: Car) {
+    const newCars = [ ...this.cars ];
+    const carIndex = newCars.findIndex(c => c.id === car.id);
+    newCars[carIndex] = car;
+    this.cars = newCars;
+    this.editCarId = -1;
+  }
+
+  doRemoveCar(carId: number) {
+    this.cars = this.cars.filter(c => c.id !== carId);
+    this.editCarId = -1;
   }
 
 }
