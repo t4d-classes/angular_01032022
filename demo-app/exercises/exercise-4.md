@@ -1,13 +1,13 @@
 # Exercise 4
 
 
-1. Using test driven development, create a component and unit test that displays the following output.
+1. Using test driven development, create a component and unit test in the Shared Module that displays the following output. Name the component Tool Footer
 
 
 ```html
 <footer>
   <small>
-    &copy 2022, Some Company Name
+    &copy; 2022, Some Company Name
   </small>
 </footer>
 ```
