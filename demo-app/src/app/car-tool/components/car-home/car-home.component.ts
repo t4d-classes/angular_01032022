@@ -35,6 +35,8 @@ export class CarHomeComponent implements OnInit {
   }
 
   doAppendCar(car: NewCar) {
+
+    // do not do it this way, look below
     // this.carsSvc.append(car).subscribe({
     //   next: () => {
     //     this.carsSvc.all().subscribe({
@@ -60,17 +62,32 @@ export class CarHomeComponent implements OnInit {
   }
 
   doReplaceCar(car: Car) {
-    const newCars = [ ...this.cars ];
-    const carIndex = newCars.findIndex(c => c.id === car.id);
-    newCars[carIndex] = car;
-    this.cars = newCars;
-    this.editCarId = -1;
+
+    this.carsSvc
+      .replace(car)
+      .pipe(
+        switchMap(() => this.carsSvc.all())
+      )
+      .subscribe({
+        next: cars => {
+          this.cars = cars;
+          this.editCarId = -1;
+        }
+      });
   }
 
   doRemoveCar(carId: number) {
-    this.cars = this.cars.filter(c => c.id !== carId);
-    this.editCarId = -1;
+    this.carsSvc
+      .remove(carId)
+      .pipe(
+        switchMap(() => this.carsSvc.all())
+      )
+      .subscribe({
+        next: cars => {
+          this.cars = cars;
+          this.editCarId = -1;
+        }
+      });
   }
 
 }
-
