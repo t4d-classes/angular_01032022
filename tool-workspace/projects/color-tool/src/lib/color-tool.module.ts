@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+
+import { ColorToolRoutingModule } from './color-tool-routing.module';
+
 import { ColorToolComponent } from './color-tool.component';
 
 
@@ -8,6 +11,7 @@ import { ColorToolComponent } from './color-tool.component';
     ColorToolComponent
   ],
   imports: [
+    ColorToolRoutingModule,
   ],
   exports: [
     ColorToolComponent
