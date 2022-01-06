@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { add, subtract } from './calc-tool.actions';
+import { add, subtract, multiply, divide, clear } from './calc-tool.actions';
 import { HistoryEntry } from './models/history';
 
 export const resultReducer = createReducer<number>(
@@ -10,6 +10,15 @@ export const resultReducer = createReducer<number>(
   }),
   on(subtract, (state, action) => {
     return state - action.value;
+  }),  
+  on(multiply, (state, action) => {
+    return state * action.value;
+  }),
+  on(divide, (state, action) => {
+    return state - action.value;
+  }),  
+  on(clear, (state, action) => {
+    return 0;
   }),  
 );
 
@@ -28,5 +37,22 @@ export const historyReducer = createReducer<HistoryEntry[]>(
       opName: 'Subtract',
       opValue: action.value
     });
-  }),  
+  }),
+  on(multiply, (state, action) => {
+    return state.concat({
+      id: Math.max(...state.map(entry => entry.id), 0) + 1,
+      opName: 'Multiply',
+      opValue: action.value
+    });
+  }),
+  on(divide, (state, action) => {
+    return state.concat({
+      id: Math.max(...state.map(entry => entry.id), 0) + 1,
+      opName: 'Divide',
+      opValue: action.value
+    });
+  }),
+  on(clear, (state, action) => {
+    return [];
+  }),
 )
