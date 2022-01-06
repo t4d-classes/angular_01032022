@@ -1,6 +1,11 @@
+<div *ngIf="errorMessage$ | async">
+  {{errorMessage$ | async}}
+</div>
+
 <div>
   Result {{result$ | async}}
 </div>
+
 <form>
   <label>
     Num Input:

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { add, subtract, multiply, divide, clear } from './calc-tool.actions';
+import { add, subtract, multiply, divide, clear, setErrorMessage, clearErrorMessage } from './calc-tool.actions';
 import { HistoryEntry } from './models/history';
 
 export const resultReducer = createReducer<number>(
@@ -15,7 +15,7 @@ export const resultReducer = createReducer<number>(
     return state * action.value;
   }),
   on(divide, (state, action) => {
-    return state - action.value;
+    return state / action.value;
   }),  
   on(clear, (state, action) => {
     return 0;
@@ -55,4 +55,14 @@ export const historyReducer = createReducer<HistoryEntry[]>(
   on(clear, (state, action) => {
     return [];
   }),
-)
+);
+
+export const errorMessageReducer = createReducer<string>(
+  "",
+  on(setErrorMessage, (state, action) => {
+    return action.message;
+  }),
+  on(clearErrorMessage, (state, action) => {
+    return "";
+  }),
+);
