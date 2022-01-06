@@ -14,6 +14,7 @@ import { add, subtract } from '../../calc-tool.actions';
 export class CalcHomeComponent implements OnInit {
 
   result$ = this.store.pipe(select('result'));
+  history$ = this.store.pipe(select('history'));
 
   numInput = new FormControl(0);
 

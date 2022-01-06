@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { CalcToolRoutingModule } from './calc-tool-routing.module';
 import { CalcHomeComponent } from './components/calc-home/calc-home.component';
-import { resultReducer } from './calc-tool.reducers';
+import { resultReducer, historyReducer } from './calc-tool.reducers';
 
 
 
@@ -18,6 +18,7 @@ import { resultReducer } from './calc-tool.reducers';
     ReactiveFormsModule,
     StoreModule.forRoot({
       result: resultReducer,
+      history: historyReducer,
     }),
     CalcToolRoutingModule,
   ]
