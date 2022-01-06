@@ -1,0 +1,11 @@
+:host {
+  background-color: navy;
+  color: white;
+
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  margin-left: 20px;
+}

@@ -1,0 +1,62 @@
+
+
+:host {
+  display: grid;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: 70px 50px 1fr 50px;
+
+  grid-template-areas: 
+    "header"
+    "menu"
+    "content"
+    "footer"
+  ;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+app-tool-header {
+  grid-area: header;
+}
+
+nav {
+  grid-area: menu;
+}
+
+nav > ul {
+  list-style-type: none;
+  display: flex;
+}
+
+nav > ul > li {
+  margin: 2px 4px;
+}
+
+nav a, nav a:active, nav a:visited {
+  text-decoration: none;
+  color: blue;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a.active {
+  font-weight: bold;
+  color: black;
+}
+
+main {
+  grid-area: content;
+
+  overflow-y: scroll;
+}
+
+app-tool-footer {
+  grid-area: footer;
+}

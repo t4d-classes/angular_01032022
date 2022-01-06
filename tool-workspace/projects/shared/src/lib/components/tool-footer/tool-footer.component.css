@@ -1,0 +1,9 @@
+:host {
+  background-color: navy;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 4px
+}
