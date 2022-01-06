@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 import { CarToolRoutingModule } from './car-tool-routing.module';
 
 import { CarEditRowComponent } from './components/car-edit-row/car-edit-row.component';
@@ -23,6 +28,10 @@ import { CarViewRowComponent } from './components/car-view-row/car-view-row.comp
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     CarToolRoutingModule,
   ],
 })

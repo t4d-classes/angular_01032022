@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NewCar } from '../../models/cars';
 
 @Component({
@@ -10,6 +10,9 @@ import { NewCar } from '../../models/cars';
 export class CarFormComponent implements OnInit {
 
   carForm!: FormGroup;
+
+  @Input()
+  buttonText = "Submit Car";
 
   @Output()
   submitCar = new EventEmitter<NewCar>();

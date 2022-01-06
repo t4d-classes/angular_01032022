@@ -1,30 +1,27 @@
 <form [formGroup]="carForm">
 
-  <label>
-    Make:
-    <input type="text" formControlName="make">
-  </label>
+  <h2>Car Form</h2>
 
-  <label>
-    Model:
-    <input type="text" formControlName="model">
-  </label>
+  <mat-form-field floatLabel="auto">
+    <input matInput placeholder="Make" formControlName="make">
+  </mat-form-field>  
 
-  <label>
-    Year:
-    <input type="number" formControlName="year">
-  </label>
+  <mat-form-field floatLabel="auto">
+    <input matInput placeholder="Model" formControlName="model">
+  </mat-form-field> 
 
-  <label>
-    Color:
-    <input type="text" formControlName="color">
-  </label>
+  <mat-form-field floatLabel="auto">
+    <input type="number" matInput placeholder="Year" formControlName="year">
+  </mat-form-field> 
 
-  <label>
-    Price:
-    <input type="number" formControlName="price">
-  </label>
+  <mat-form-field floatLabel="auto">
+    <input matInput placeholder="Color" formControlName="color">
+  </mat-form-field> 
 
-  <button (click)="doSubmitCar()">Add Car</button>
+  <mat-form-field floatLabel="auto">
+    <input type="number" matInput placeholder="Price" formControlName="price">
+  </mat-form-field> 
+
+  <button mat-raised-button (click)="doSubmitCar()" color="primary">{{buttonText}}</button>
 
 </form>

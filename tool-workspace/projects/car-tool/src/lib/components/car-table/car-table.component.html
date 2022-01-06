@@ -1,4 +1,86 @@
-<table>
+<section>
+  <header>
+    <h2>Car Inventory</h2>
+  </header>
+  <form [formGroup]="editCarForm">
+    <table mat-table [dataSource]="cars">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let car"> {{car.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="make">
+        <th mat-header-cell *matHeaderCellDef> Make </th>
+        <td mat-cell *matCellDef="let car">
+          <span *ngIf="car.id !== editCarId"> {{car.make}} </span>
+          <mat-form-field *ngIf="car.id === editCarId">
+            <input matInput formControlName="make">
+          </mat-form-field>       
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="model">
+        <th mat-header-cell *matHeaderCellDef> Model </th>
+        <td mat-cell *matCellDef="let car">
+          <span *ngIf="car.id !== editCarId"> {{car.model}} </span>
+          <mat-form-field *ngIf="car.id === editCarId">
+            <input matInput formControlName="model">
+          </mat-form-field>       
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef> Year </th>
+        <td mat-cell *matCellDef="let car">
+          <span *ngIf="car.id !== editCarId"> {{car.year}} </span>
+          <mat-form-field *ngIf="car.id === editCarId">
+            <input type="number" matInput formControlName="year">
+          </mat-form-field>       
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="color">
+        <th mat-header-cell *matHeaderCellDef> Color </th>
+        <td mat-cell *matCellDef="let car">
+          <span *ngIf="car.id !== editCarId"> {{car.color}} </span>
+          <mat-form-field *ngIf="car.id === editCarId">
+            <input matInput formControlName="color">
+          </mat-form-field>       
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let car">
+          <span *ngIf="car.id !== editCarId"> {{car.price}} </span>
+          <mat-form-field *ngIf="car.id === editCarId">
+            <input type="number" matInput formControlName="price">
+          </mat-form-field>       
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let car">
+          <ng-container *ngIf="car.id !== editCarId">
+            <button (click)="editCar.emit(car.id)" mat-raised-button color="primary">Edit</button>
+            <button (click)="deleteCar.emit(car.id)" mat-raised-button color="warn">Delete</button>
+          </ng-container>
+          <ng-container *ngIf="car.id === editCarId">
+            <button (click)="doSaveCar()" mat-raised-button color="primary">Save</button>
+            <button (click)="cancelCar.emit()" mat-raised-button color="accent">Cancel</button>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </form>
+</section>
+<!-- <table>
   <thead>
     <tr>
       <th>Id</th>
@@ -17,4 +99,4 @@
         [car]="car" (saveCar)="saveCar.emit($event)" (cancelCar)="cancelCar.emit()"></tr>
     </ng-container>
   </tbody>
-</table>
+</table> -->

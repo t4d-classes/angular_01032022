@@ -61,6 +61,7 @@
               "projects/tool-app/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "projects/tool-app/src/styles.css"
             ],
             "scripts": []
@@ -128,6 +129,7 @@
               "projects/tool-app/src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "projects/tool-app/src/styles.css"
             ],
             "scripts": []
