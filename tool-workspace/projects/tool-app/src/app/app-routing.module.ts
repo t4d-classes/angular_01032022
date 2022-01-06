@@ -17,6 +17,10 @@ const routes: Routes = [
     path: "car-tool",
     loadChildren: () => import("car-tool").then(m => m.CarToolModule),
   },
+  { 
+    path: "calc-tool",
+    loadChildren: () => import("./calc-tool/calc-tool.module").then(m => m.CalcToolModule),
+  },  
 ];
 
 @NgModule({

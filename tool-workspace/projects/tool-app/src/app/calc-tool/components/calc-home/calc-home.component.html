@@ -1,0 +1,13 @@
+<div>
+  Result {{result}}
+</div>
+<form>
+  <label>
+    Num Input:
+    <input type="number" [formControl]="numInput">
+  </label>
+  <fieldset>
+    <button (click)="doAdd()">+</button>
+    <button (click)="doSubtract()">-</button>
+  </fieldset>
+</form>
