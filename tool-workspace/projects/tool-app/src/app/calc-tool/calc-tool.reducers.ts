@@ -1,19 +1,23 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { add, subtract, multiply, divide, clear, setErrorMessage, clearErrorMessage } from './calc-tool.actions';
+import {
+  add, subtract, multiply, divide, clear, deleteHistoryEntry,
+} from './calc-tool.actions';
+import { Result } from './calc-tool.state';
+
 import { HistoryEntry } from './models/history';
 
 const doOp = (
-  state: { value: number, errorMessage: string },
-  errorMessage: string, value: number) => {
-  return {
-    ...state,
-    errorMessage,
-    value,
-  };
-};
+  state: Result,
+  errorMessage: string,
+  value: number,
+) => ({
+  ...state,
+  errorMessage,
+  value,
+});
 
-export const resultReducer = createReducer<{ value: number, errorMessage: string}>(
+export const resultReducer = createReducer<Result>(
   { value: 0, errorMessage: '' },
   on(add, (state, action) => {
     return doOp(state, '', state.value + action.value);
@@ -70,6 +74,9 @@ export const historyReducer = createReducer<HistoryEntry[]>(
   }),
   on(clear, (state, action) => {
     return [];
+  }),
+  on(deleteHistoryEntry, (state, action) => {
+    return state.filter(entry => entry.id !== action.historyEntryId);
   }),
 );
 

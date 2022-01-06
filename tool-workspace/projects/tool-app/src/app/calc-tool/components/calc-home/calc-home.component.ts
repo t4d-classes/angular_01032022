@@ -4,7 +4,10 @@ import { Store, select } from '@ngrx/store';
 
 import { CalcToolState } from '../../calc-tool.state';
 
-import { add, subtract, multiply, divide, clear, setErrorMessage, clearErrorMessage } from '../../calc-tool.actions';
+import {
+  add, subtract, multiply, divide, clear,
+  deleteHistoryEntry,
+} from '../../calc-tool.actions';
 
 @Component({
   selector: 'app-calc-home',
@@ -42,5 +45,9 @@ export class CalcHomeComponent implements OnInit {
   doClear() {
     this.store.dispatch(clear());
   }  
+
+  doDeleteHistoryEntry(entryId: number) {
+    this.store.dispatch(deleteHistoryEntry({ historyEntryId: entryId }));
+  }
 
 }

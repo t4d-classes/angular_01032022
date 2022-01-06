@@ -21,6 +21,7 @@
   <ul>
     <li *ngFor="let entry of history$ | async">
       {{entry.id}} {{entry.opName}} {{entry.opValue}}
+      <button type="button" (click)="doDeleteHistoryEntry(entry.id)">X</button>
     </li>
   </ul>
 </form>
