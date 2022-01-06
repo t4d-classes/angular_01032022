@@ -2,7 +2,10 @@ import { HistoryEntry } from "./models/history";
 
 
 export interface CalcToolState {
-  result: number;
+  result: {
+    value: number;
+    errorMessage: string;
+  },
   history: HistoryEntry[];
-  errorMessage: string;
+  // errorMessage: string;
 }

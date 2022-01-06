@@ -1,9 +1,9 @@
-<div *ngIf="errorMessage$ | async">
-  {{errorMessage$ | async}}
+<div *ngIf="(result$ | async)!.errorMessage">
+  {{(result$ | async)!.errorMessage}}
 </div>
 
 <div>
-  Result {{result$ | async}}
+  Result {{(result$ | async)!.value}}
 </div>
 
 <form>

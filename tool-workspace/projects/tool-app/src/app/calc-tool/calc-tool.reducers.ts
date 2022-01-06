@@ -3,22 +3,35 @@ import { createReducer, on } from '@ngrx/store';
 import { add, subtract, multiply, divide, clear, setErrorMessage, clearErrorMessage } from './calc-tool.actions';
 import { HistoryEntry } from './models/history';
 
-export const resultReducer = createReducer<number>(
-  0,
+const doOp = (
+  state: { value: number, errorMessage: string },
+  errorMessage: string, value: number) => {
+  return {
+    ...state,
+    errorMessage,
+    value,
+  };
+};
+
+export const resultReducer = createReducer<{ value: number, errorMessage: string}>(
+  { value: 0, errorMessage: '' },
   on(add, (state, action) => {
-    return state + action.value;
+    return doOp(state, '', state.value + action.value);
   }),
   on(subtract, (state, action) => {
-    return state - action.value;
+    return doOp(state, '', state.value - action.value);
   }),  
   on(multiply, (state, action) => {
-    return state * action.value;
+    return doOp(state, '', state.value * action.value);
   }),
   on(divide, (state, action) => {
-    return state / action.value;
+    if (action.value === 0) {
+      return doOp(state, 'Divide by zero', state.value);
+    }
+    return doOp(state, '', state.value / action.value);
   }),  
   on(clear, (state, action) => {
-    return 0;
+    return doOp(state, '', 0);
   }),  
 );
 
@@ -46,6 +59,9 @@ export const historyReducer = createReducer<HistoryEntry[]>(
     });
   }),
   on(divide, (state, action) => {
+    if (action.value === 0) {
+      return state;
+    }
     return state.concat({
       id: Math.max(...state.map(entry => entry.id), 0) + 1,
       opName: 'Divide',
@@ -57,12 +73,3 @@ export const historyReducer = createReducer<HistoryEntry[]>(
   }),
 );
 
-export const errorMessageReducer = createReducer<string>(
-  "",
-  on(setErrorMessage, (state, action) => {
-    return action.message;
-  }),
-  on(clearErrorMessage, (state, action) => {
-    return "";
-  }),
-);
