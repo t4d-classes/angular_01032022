@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ColorHomeComponent } from './components/color-home/color-home.component';
+import { CarHomeComponent } from './components/car-home/car-home.component';
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", component: ColorHomeComponent },
+  { path: "", pathMatch: "full", component: CarHomeComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ColorToolRoutingModule { }
+export class CarToolRoutingModule { }

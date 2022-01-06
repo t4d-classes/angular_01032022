@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ColorToolService } from './color-tool.service';
+import { CalendarService } from './calendar.service';
 
-describe('ColorToolService', () => {
-  let service: ColorToolService;
+describe('CalendarService', () => {
+  let service: CalendarService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ColorToolService);
+    service = TestBed.inject(CalendarService);
   });
 
   it('should be created', () => {

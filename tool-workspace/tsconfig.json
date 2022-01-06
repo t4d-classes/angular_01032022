@@ -4,9 +4,17 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "car-tool": [
+        "dist/car-tool/car-tool",
+        "dist/car-tool"
+      ],
       "color-tool": [
         "dist/color-tool/color-tool",
         "dist/color-tool"
+      ],
+      "shared": [
+        "dist/shared/shared",
+        "dist/shared"
       ]
     },
     "outDir": "./dist/out-tsc",

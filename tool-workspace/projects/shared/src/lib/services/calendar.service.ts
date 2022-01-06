@@ -3,7 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ColorToolService {
+export class CalendarService {
 
   constructor() { }
+
+  currentYear() {
+    return new Date().getFullYear();
+  }
 }
