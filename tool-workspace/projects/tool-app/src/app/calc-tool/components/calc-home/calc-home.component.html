@@ -1,5 +1,5 @@
 <div>
-  Result {{result}}
+  Result {{result$ | async}}
 </div>
 <form>
   <label>
@@ -7,7 +7,7 @@
     <input type="number" [formControl]="numInput">
   </label>
   <fieldset>
-    <button (click)="doAdd()">+</button>
-    <button (click)="doSubtract()">-</button>
+    <button type="button" (click)="doAdd()">+</button>
+    <button type="button" (click)="doSubtract()">-</button>
   </fieldset>
 </form>
