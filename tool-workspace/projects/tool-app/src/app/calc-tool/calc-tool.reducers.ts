@@ -3,41 +3,8 @@ import { createReducer, on } from '@ngrx/store';
 import {
   add, subtract, multiply, divide, clear, deleteHistoryEntry,
 } from './calc-tool.actions';
-import { Result } from './calc-tool.state';
 
 import { HistoryEntry } from './models/history';
-
-const doOp = (
-  state: Result,
-  errorMessage: string,
-  value: number,
-) => ({
-  ...state,
-  errorMessage,
-  value,
-});
-
-export const resultReducer = createReducer<Result>(
-  { value: 0, errorMessage: '' },
-  on(add, (state, action) => {
-    return doOp(state, '', state.value + action.value);
-  }),
-  on(subtract, (state, action) => {
-    return doOp(state, '', state.value - action.value);
-  }),  
-  on(multiply, (state, action) => {
-    return doOp(state, '', state.value * action.value);
-  }),
-  on(divide, (state, action) => {
-    if (action.value === 0) {
-      return doOp(state, 'Divide by zero', state.value);
-    }
-    return doOp(state, '', state.value / action.value);
-  }),  
-  on(clear, (state, action) => {
-    return doOp(state, '', 0);
-  }),  
-);
 
 export const historyReducer = createReducer<HistoryEntry[]>(
   [],

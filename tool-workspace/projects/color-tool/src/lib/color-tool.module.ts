@@ -19,7 +19,7 @@ import { colorsReducer } from './color-tool.reducers';
     CommonModule,
     ReactiveFormsModule,
     ColorToolRoutingModule,
-    StoreModule.forRoot({
+    StoreModule.forFeature('colorTool', {
       colors: colorsReducer,
     }),
   ],

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tool-app';
+
+  errorMessage$ = this.store.pipe(select("errorMessage"));
+
+  constructor(private store: Store<{ errorMessage: string}>) { }
 }
