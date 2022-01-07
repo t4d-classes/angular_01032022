@@ -2,14 +2,13 @@ import { createReducer, on } from '@ngrx/store';
 
 import { Color } from './models/colors';
 
-import { appendColor } from './color-tool.actions';
+import { appendColor, refreshColorsDone } from './color-tool.actions';
 
 export const colorsReducer = createReducer<Color[]>(
-  [
-    { id: 1, name: 'yellow', hexcode: '00ffff' },
-    { id: 2, name: 'orange', hexcode: 'ffff00' },
-    { id: 3, name: 'purple', hexcode: 'ff00ff' },    
-  ],
+  [],
+  on(refreshColorsDone, (state, action) => {
+    return action.colors;
+  }),
   on(appendColor, (state, action) => {
 
     return state.concat({

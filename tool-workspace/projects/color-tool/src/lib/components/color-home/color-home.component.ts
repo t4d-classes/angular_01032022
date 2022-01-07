@@ -4,7 +4,7 @@ import { ColorToolState } from '../../color-tool.state';
 
 import { NewColor } from '../../models/colors';
 
-import { appendColor } from '../../color-tool.actions';
+import { appendColor, refreshColorsRequest } from '../../color-tool.actions';
 import { selectColors } from '../../color-tool.selectors';
 
 @Component({
@@ -20,6 +20,7 @@ export class ColorHomeComponent implements OnInit {
     private store: Store<ColorToolState>) { }
     
   ngOnInit(): void {
+    this.store.dispatch(refreshColorsRequest());
   }
 
   doAddColor(color: NewColor)  {
