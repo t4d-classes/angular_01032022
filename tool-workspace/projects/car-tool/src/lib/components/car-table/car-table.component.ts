@@ -15,16 +15,26 @@ export class CarTableComponent implements OnInit {
   ];
 
   @Input()
-  cars: Car[] = [];
+  cars: Car[] | null = [];
+
+  allCars() {
+    return this.cars ?? [];
+  }
 
   private _editCarId = -1;
 
   @Input()
-  set editCarId(carId: number) {
+  set editCarId(carId: number | null) {
+
+    if (!carId) {
+      this._editCarId = -1;
+      return;
+    }
+
     this._editCarId = carId;
 
     if (this._editCarId > 0) {
-      const car = this.cars.find(c => c.id === this._editCarId);
+      const car = this.allCars().find(c => c.id === this._editCarId);
       if (car) {
         this.editCarForm = this.fb.group({
           make: car.make,

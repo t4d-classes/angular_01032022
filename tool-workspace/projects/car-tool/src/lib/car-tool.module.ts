@@ -18,6 +18,7 @@ import { CarHomeComponent } from './components/car-home/car-home.component';
 import { CarTableComponent } from './components/car-table/car-table.component';
 import { CarViewRowComponent } from './components/car-view-row/car-view-row.component';
 import { carsReducer, editCarIdReducer } from './car-tool.reducers';
+import { CarToolEffects } from './car-tool.effects';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { carsReducer, editCarIdReducer } from './car-tool.reducers';
       cars: carsReducer,
       editCarId: editCarIdReducer
     }),
-    EffectsModule.forFeature([]),
+    EffectsModule.forFeature([ CarToolEffects ]),
   ],
 })
 export class CarToolModule { }

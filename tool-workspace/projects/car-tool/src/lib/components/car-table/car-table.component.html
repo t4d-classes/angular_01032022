@@ -3,7 +3,7 @@
     <h2>Car Inventory</h2>
   </header>
   <form [formGroup]="editCarForm">
-    <table mat-table [dataSource]="cars">
+    <table mat-table [dataSource]="allCars()">
 
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Id </th>
