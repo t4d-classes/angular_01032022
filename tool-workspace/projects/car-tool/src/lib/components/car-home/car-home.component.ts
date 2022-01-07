@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
 import { Car, NewCar } from '../../models/cars';
 import { CarsService } from '../../services/cars.service';
+import {
+  refreshCarsRequest, appendCarRequest, replaceCarRequest,
+  removeCarRequest, editCar, cancelCar } from '../../car-tool.actions';
+import { CarToolState } from '../../car-tool.state';
+import { selectCars, selectEditCarId } from '../../car-tool.selectors';
 
 @Component({
   selector: 'app-car-home',
@@ -11,83 +17,35 @@ import { CarsService } from '../../services/cars.service';
 })
 export class CarHomeComponent implements OnInit {
 
-  cars: Car[] = [];
+  cars$ = this.store.select(selectCars);
 
-  editCarId = -1;
+  editCarId$ = this.store.select(selectEditCarId);
 
-  constructor(private carsSvc: CarsService) {
+  constructor(private store: Store<CarToolState>) {
   }
 
   ngOnInit(): void {
-    this.carsSvc.all().subscribe({
-      next: cars => {
-        this.cars = cars;
-      }
-    });
+    this.store.dispatch(refreshCarsRequest())
   }
 
   doEditCar(carId: number) {
-    this.editCarId = carId;
+    this.store.dispatch(editCar({ carId }));
   }
 
   doCancelCar() {
-    this.editCarId = -1;
+    this.store.dispatch(cancelCar());
   }
 
   doAppendCar(car: NewCar) {
-
-    // do not do it this way, look below
-    // this.carsSvc.append(car).subscribe({
-    //   next: () => {
-    //     this.carsSvc.all().subscribe({
-    //       next: cars => {
-    //         this.cars = cars;
-    //         this.editCarId = -1;
-    //       }
-    //     });
-    //   }
-    // });
-
-    this.carsSvc
-      .append(car)
-      .pipe(
-        switchMap(() => this.carsSvc.all())
-      )
-      .subscribe({
-        next: cars => {
-          this.cars = cars;
-          this.editCarId = -1;
-        }
-      });
+    this.store.dispatch(appendCarRequest({ car }));
   }
 
   doReplaceCar(car: Car) {
-
-    this.carsSvc
-      .replace(car)
-      .pipe(
-        switchMap(() => this.carsSvc.all())
-      )
-      .subscribe({
-        next: cars => {
-          this.cars = cars;
-          this.editCarId = -1;
-        }
-      });
+    this.store.dispatch(replaceCarRequest({ car }));
   }
 
   doRemoveCar(carId: number) {
-    this.carsSvc
-      .remove(carId)
-      .pipe(
-        switchMap(() => this.carsSvc.all())
-      )
-      .subscribe({
-        next: cars => {
-          this.cars = cars;
-          this.editCarId = -1;
-        }
-      });
+    this.store.dispatch(removeCarRequest({ carId }));
   }
 
 }

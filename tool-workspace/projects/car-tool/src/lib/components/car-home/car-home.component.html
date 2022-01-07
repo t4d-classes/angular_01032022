@@ -1,4 +1,4 @@
-<app-car-table [cars]=cars [editCarId]="editCarId"
+<app-car-table [cars]="cars$ | async" [editCarId]="editCarId$ | async"
   (editCar)="doEditCar($event)" (deleteCar)="doRemoveCar($event)"
   (saveCar)="doReplaceCar($event)" (cancelCar)="doCancelCar()">
 </app-car-table>
