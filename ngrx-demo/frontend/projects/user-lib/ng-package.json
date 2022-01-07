@@ -1,0 +1,13 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/user-lib",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "lodash-es": "lodash-es",
+      "@t4d-wnow-fullstack-angular11/shared-lib": "@t4d-wnow-fullstack-angular11/shared-lib",
+      "@ngrx/store": "ngrx-store",
+      "@ngrx/effects": "ngrx-effects"
+    }
+  }
+}

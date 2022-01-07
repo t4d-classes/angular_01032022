@@ -1,0 +1,23 @@
+{
+  "name": "@t4d-wnow-fullstack-angular11/user-lib",
+  "version": "7.0.0",
+  "description": "User Lib Angular Library for Course 7 of the Mastering Full-Stack Development with Angular 11 series",
+  "keywords": [
+    "angular",
+    "typescript"
+  ],
+  "homepage": "https://www.wintellectnow.com/Home/SeriesDetail?seriesId=mastering-full-stack-development-with-angular-11",
+  "license": "MIT",
+  "author": "Eric Greene <eric@t4d.io> (https://www.t4d.io)",
+  "peerDependencies": {
+    "@angular/common": "^11.0.3",
+    "@angular/core": "^11.0.3",
+    "@angular/material": "^11.0.3",
+    "@ngrx/effects": "^10.1.2",
+    "@ngrx/store": "^10.1.2",
+    "@t4d-wnow-fullstack-angular11/shared-lib": "git+https://github.com/t4d-wnow-fullstack-angular11/course07-shared-lib-pkg.git"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
