@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { ColorToolState } from '../../color-tool.state';
 
-import { Color } from '../../models/colors';
+import { NewColor } from '../../models/colors';
 
-import { IColorsService } from '../../models/IColorsService';
-import { COLORS_SERVICE_TOKEN } from '../../tokens/colorsService';
+import { appendColor } from '../../color-tool.actions';
 
 @Component({
   // css selector
@@ -13,19 +14,17 @@ import { COLORS_SERVICE_TOKEN } from '../../tokens/colorsService';
 })
 export class ColorHomeComponent implements OnInit {
 
-  colors: Color[] = [];  
+  colors$ = this.store.pipe(select("colors"));
 
   constructor(
-    @Inject(COLORS_SERVICE_TOKEN)
-    private colorsSvc: IColorsService) { }
-
+    private store: Store<ColorToolState>) { }
+    
   ngOnInit(): void {
-    this.colors = this.colorsSvc.all();
+    throw new Error('Method not implemented.');
   }
 
-  doAddColor(color: Color)  {
-    this.colorsSvc.append(color);
-    this.colors = this.colorsSvc.all();
+  doAddColor(color: NewColor)  {
+    this.store.dispatch(appendColor({ color }));
   }
 
 }
