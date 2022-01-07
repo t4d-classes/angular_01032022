@@ -3,7 +3,6 @@ import { switchMap } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 import { Car, NewCar } from '../../models/cars';
-import { CarsService } from '../../services/cars.service';
 import {
   refreshCarsRequest, appendCarRequest, replaceCarRequest,
   removeCarRequest, editCar, cancelCar } from '../../car-tool.actions';
@@ -17,9 +16,9 @@ import { selectCars, selectEditCarId } from '../../car-tool.selectors';
 })
 export class CarHomeComponent implements OnInit {
 
-  cars$ = this.store.select(selectCars);
+  cars$ = this.store.pipe(select(selectCars));
 
-  editCarId$ = this.store.select(selectEditCarId);
+  editCarId$ = this.store.pipe(select(selectEditCarId));
 
   constructor(private store: Store<CarToolState>) {
   }
