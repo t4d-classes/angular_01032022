@@ -20,7 +20,6 @@ export class ColorHomeComponent implements OnInit {
     private store: Store<ColorToolState>) { }
     
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
   doAddColor(color: NewColor)  {
